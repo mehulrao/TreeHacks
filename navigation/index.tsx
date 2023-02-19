@@ -3,7 +3,11 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
+import {
+    FontAwesome,
+    Entypo,
+    MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
     NavigationContainer,
@@ -16,17 +20,20 @@ import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import AddNewScreen from "../screens/AddNewScreen";
-import ModalScreen from "../screens/ModalScreen";
+import AddNewScreen from "../screens/AddTabScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import TabOneScreen from "../screens/HomeTabScreen";
+import TabTwoScreen from "../screens/SummaryTabScreen";
 import {
     RootStackParamList,
     RootTabParamList,
     RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import SummaryTabScreen from "../screens/SummaryTabScreen";
+import AddTabScreen from "../screens/AddTabScreen";
+import DiscoverTabScreen from "../screens/DiscoverTabScreen";
+import ProfileTabScreen from "../screens/ProfileTabScreen";
 
 export default function Navigation({
     colorScheme,
@@ -62,9 +69,6 @@ function RootNavigator() {
                 component={NotFoundScreen}
                 options={{ title: "Oops!" }}
             />
-            <Stack.Group screenOptions={{ presentation: "modal" }}>
-                <Stack.Screen name="Modal" component={ModalScreen} />
-            </Stack.Group>
         </Stack.Navigator>
     );
 }
@@ -80,15 +84,15 @@ function BottomTabNavigator() {
 
     return (
         <BottomTab.Navigator
-            initialRouteName="TabOne"
+            initialRouteName="HomeTab"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
             }}
         >
             <BottomTab.Screen
-                name="TabOne"
+                name="HomeTab"
                 component={TabOneScreen}
-                options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
+                options={({ navigation }: RootTabScreenProps<"HomeTab">) => ({
                     title: "Home",
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon name="home" color={color} />
@@ -96,8 +100,8 @@ function BottomTabNavigator() {
                 })}
             />
             <BottomTab.Screen
-                name="TabTwo"
-                component={TabTwoScreen}
+                name="SummaryTab"
+                component={SummaryTabScreen}
                 options={{
                     title: "Summary",
                     tabBarIcon: ({ color }) => (
@@ -106,12 +110,40 @@ function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
-                name="TabThree"
-                component={AddNewScreen}
+                name="AddTab"
+                component={AddTabScreen}
                 options={{
-                    title: "",
+                    title: "Add",
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon name="plus" color={color} />
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="DiscoverTab"
+                component={DiscoverTabScreen}
+                options={{
+                    title: "Discover",
+                    tabBarIcon: ({ color }) => (
+                        <Entypo
+                            name="magnifying-glass"
+                            size={35}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="ProfileTab"
+                component={ProfileTabScreen}
+                options={{
+                    title: "Profile",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="face-man-profile"
+                            size={35}
+                            color={color}
+                        />
                     ),
                 }}
             />

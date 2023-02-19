@@ -1,19 +1,12 @@
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { RootTabScreenProps } from "../types";
 
-export default function TabTwoScreen() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Summary</Text>
-            <View
-                style={styles.separator}
-                lightColor="#eee"
-                darkColor="rgba(255,255,255,0.1)"
-            />
-        </View>
-    );
+export default function HomeTabScreen({
+    navigation,
+}: RootTabScreenProps<"HomeTab">) {
+    return <View style={styles.container} />;
 }
 
 const styles = StyleSheet.create({
@@ -25,6 +18,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: "bold",
+    },
+    text: {
+        fontSize: 20,
+        fontWeight: "bold",
+        textAlign: "left",
     },
     separator: {
         marginVertical: 30,

@@ -1,15 +1,14 @@
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
-export default function TabOneScreen({
+export default function DiscoverTabScreen({
     navigation,
-}: RootTabScreenProps<"TabOne">) {
+}: RootTabScreenProps<"DiscoverTab">) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Home</Text>
+            <Text style={styles.title}>Discover</Text>
             <View
                 style={styles.separator}
                 lightColor="#eee"
